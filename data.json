@@ -1,0 +1,104 @@
+{
+	"name": "Ricardo Agustín González",
+	"location": "San Miguel, Buenos Aires, Argentina",
+	"phone": "+54 9 11 6825 1569",
+	"email": "agus.devvv@gmail.com",
+	"website": "www.vulcanis.com.ar",
+	"github": "www.github.com/AgustinGonzalez1",
+	"summary": "Desarrollador Full Stack con más de 3 años de experiencia en el diseño y desarrollo de aplicaciones web interactivas utilizando el stack PERN. Experto en creación de interfaces de usuario dinámicas y responsivas con React y Bootstrap 5. Amplio conocimiento en manipulación de APIs y colaboración con equipos DevOps para despliegues en entornos de contenedores como Docker y automatizaciones con GitHub Actions. Comprometido con mejorar la experiencia del usuario a través de prácticas avanzadas de UX/UI y optimización del rendimiento en proyectos ágiles.",
+	"employment": [
+		{
+			"position": "Desarrollador Full Stack",
+			"company": "By Derm",
+			"dates": "Junio 2024 - noviembre 2024",
+			"details": [
+				"Desarrollo de aplicaciones web utilizando el stack PERN (PostgreSQL, Express.js, React.js, Node.js).",
+				"Creación de interfaces de usuario dinámicas y responsivas con React y Bootstrap 5.",
+				"Diseño y gestión de APIs RESTful integradas con bases de datos PostgreSQL utilizando Sequelize.",
+				"Colaboración con el equipo DevOps para despliegues en entornos de contenedores (Docker) y automatización de procesos con GitHub Actions.",
+				"Optimización de aplicaciones para mejorar el rendimiento, SEO y la experiencia del usuario."
+			]
+		},
+		{
+			"position": "Desarrollador Full Stack",
+			"company": "Novigo Technology",
+			"dates": "Noviembre 2024 - Presente",
+			"details": [
+				"Desarrollo de aplicaciones web empleando Vue en el frontend y Frappe en el backend para soluciones ERP y CRM.",
+				"Implementación de funcionalidades y flujos de trabajo personalizados en Frappe, optimizando la gestión de datos empresariales.",
+				"Creación de componentes y vistas con Vue para una experiencia de usuario dinámica y responsiva.",
+				"Integración de APIs RESTful con servicios internos y externos para la automatización de procesos.",
+				"Colaboración con equipos de diseño e infraestructura para despliegues ágiles en entornos de contenedores y CI/CD."
+			]
+		},
+		{
+			"position": "Profesor de Programación Frontend",
+			"company": "Play Code Latam",
+			"dates": "Enero 2024 - Presente",
+			"details": [
+				"Imparto clases de desarrollo web centradas en HTML, CSS, JavaScript y TypeScript.",
+				"Guío a estudiantes en proyectos con tecnologías como React, Bootstrap 5 y Tailwind CSS, fomentando un aprendizaje práctico y colaborativo.",
+				"Enseño mejores prácticas en UX/UI y desarrollo de interfaces responsivas."
+			]
+		}
+	],
+	"projects": [
+		{
+			"title": "Aplicación Web con Stack PERN",
+			"description": [
+				"Desarrollo de una aplicación web completa utilizando PostgreSQL, Express.js, React.js y Node.js.",
+				"Creación de APIs RESTful con Node.js y Express, integradas con bases de datos PostgreSQL mediante Sequelize.",
+				"Implementación de interfaces de usuario dinámicas y responsivas con React y Bootstrap 5.",
+				"Optimización de la aplicación para mejorar el rendimiento, SEO y la experiencia del usuario.",
+				"Automatización de despliegues y procesos utilizando Docker y GitHub Actions."
+			],
+			"technologies": [
+				"JavaScript",
+				"TypeScript",
+				"React",
+				"Node.js",
+				"Express",
+				"PostgreSQL",
+				"Sequelize",
+				"Bootstrap 5",
+				"Docker",
+				"GitHub Actions"
+			]
+		},
+		{
+			"title": "Automatización de Procesos y Despliegue con Docker y GitHub Actions",
+			"description": [
+				"Creación de contenedores Docker para aplicaciones web, facilitando despliegues rápidos y escalables.",
+				"Orquestación de contenedores y automatización de procesos de desarrollo y despliegue con GitHub Actions.",
+				"Colaboración con equipos DevOps para integrar prácticas de integración y entrega continua."
+			],
+			"technologies": ["Docker", "Docker Compose", "AWS", "CI/CD", "Node.js", "React", "GitHub Actions"]
+		},
+		{
+			"title": "Dashboard de Datos con Enfoque en UX/UI",
+			"description": [
+				"Desarrollo de un dashboard interactivo para visualización de métricas clave.",
+				"Implementación de prácticas avanzadas de UX/UI para mejorar la usabilidad y la experiencia del usuario.",
+				"Uso de Bootstrap 5 y Tailwind CSS para diseños responsivos y modernos.",
+				"Integración con APIs para mostrar datos actualizados en tiempo real."
+			],
+			"technologies": ["JavaScript", "React", "Bootstrap 5", "Tailwind CSS", "Node.js", "Express", "MongoDB"]
+		}
+	],
+	"skills": {
+		"Lenguajes": ["JavaScript", "TypeScript", "Python"],
+		"Frameworks": ["React", "Next.js", "Node.js", "Express", "Django"],
+		"Bases de Datos": ["PostgreSQL", "MongoDB", "SQL", "DynamoDB"],
+		"Herramientas y Tecnologías": ["Docker", "AWS", "CI/CD", "GitHub Actions", "Google Maps API"],
+		"Otros": [
+			"API RESTful",
+			"GraphQL",
+			"UX/UI",
+			"Bootstrap 5",
+			"Tailwind CSS",
+			"Web Scraping",
+			"Automatización de Procesos",
+			"DevOps"
+		]
+	}
+}
