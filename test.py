@@ -1,7 +1,6 @@
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from textwrap import wrap
-
 import json
 
 with open("data.json", "r", encoding="utf-8") as f:
@@ -21,26 +20,39 @@ def create_pdf_with_text(output_pdf_path, data):
 
     # Función para verificar si necesitamos una nueva página
     def check_page_space(y_position, line_height=14):
-        if y_position < bottom_margin + line_height:  # Si estamos cerca del final de la página
+        if y_position < bottom_margin + line_height:
+            # Si estamos cerca del final de la página, creamos una nueva
             pdf_canvas.showPage()
-            pdf_canvas.setFont("Helvetica", 10)  # Reiniciar la fuente después de nueva página
-            return height - top_margin  # Resetear y_position en la nueva página
+            # Reiniciamos la fuente después de una nueva página
+            pdf_canvas.setFont("Helvetica", 10)
+            return height - top_margin
         return y_position
 
     # Título principal
     pdf_canvas.setFont("Helvetica-Bold", 24)
     pdf_canvas.drawCentredString(width / 2, height - top_margin, data.get("name", "NOMBRE COMPLETO"))
 
-    # Información de contacto
+    # Información de contacto (Quitamos ubicación y teléfono)
     pdf_canvas.setFont("Helvetica", 10)
-    pdf_canvas.drawString(left_margin, height - top_margin - 30, data.get("location", "Ubicación"))
-    pdf_canvas.drawRightString(width - right_margin, height - top_margin - 30, data.get("phone", "Teléfono"))
-    pdf_canvas.drawRightString(width - right_margin, height - top_margin - 45, data.get("email", "Correo electrónico"))
-    pdf_canvas.drawRightString(width - right_margin, height - top_margin - 60, data.get("website", "Sitio web"))
-    pdf_canvas.drawString(left_margin, height - top_margin - 55, data.get("github", "GitHub"))
+    # Ahora movemos email, website, y GitHub un poco más arriba para aprovechar el espacio
+    pdf_canvas.drawRightString(
+        width - right_margin,
+        height - top_margin - 30,
+        data.get("email", "Correo electrónico")
+    )
+    pdf_canvas.drawRightString(
+        width - right_margin,
+        height - top_margin - 45,
+        data.get("website", "Sitio web")
+    )
+    pdf_canvas.drawString(
+        left_margin,
+        height - top_margin - 45,
+        data.get("github", "GitHub")
+    )
 
-# Sección de Experiencia
-    y_position = height - top_margin - 90
+    # Ajustamos la posición de inicio para la sección de Experiencia (un poco más arriba)
+    y_position = height - top_margin - 70
     pdf_canvas.setFont("Helvetica-Bold", 13)
     pdf_canvas.drawString(left_margin, y_position, "EXPERIENCIA")
     pdf_canvas.line(left_margin, y_position - 5, width - right_margin, y_position - 5)
@@ -53,20 +65,20 @@ def create_pdf_with_text(output_pdf_path, data):
         combined_text = f"{job['position']} - {job['company']}"
         pdf_canvas.drawString(left_margin, y_position, combined_text)
         pdf_canvas.drawRightString(width - right_margin, y_position, job["dates"])
-
         y_position -= 15
-        text_object = pdf_canvas.beginText(left_margin + 10, y_position)  # Indentación de la descripción
+
+        text_object = pdf_canvas.beginText(left_margin + 10, y_position)  # Indentación en detalles
         text_object.setFont("Helvetica", 10)
         text_object.setLeading(14)
+
         for line in job["details"]:
-            wrapped_lines = wrap(line, width=int(max_text_width / 5))  # Ajustar el divisor aquí
+            wrapped_lines = wrap(line, width=int(max_text_width / 5))  # Ajustar el divisor para ancho de línea
             for wrapped_line in wrapped_lines:
                 text_object.textLine(wrapped_line)
                 y_position -= 14
                 y_position = check_page_space(y_position)
         pdf_canvas.drawText(text_object)
         y_position -= 10
-
 
     # Sección de Proyectos
     y_position -= 10
@@ -78,32 +90,29 @@ def create_pdf_with_text(output_pdf_path, data):
 
     for project in data.get("projects", []):
         y_position = check_page_space(y_position)
-
-        # Título del proyecto en negrita
+        # Título del proyecto
         pdf_canvas.setFont("Helvetica-Bold", 12)
         pdf_canvas.drawString(left_margin, y_position, project['title'])
         y_position -= 15
 
-        # Descripción del proyecto como una lista de puntos
+        # Descripción del proyecto como lista de puntos
         pdf_canvas.setFont("Helvetica", 10)
         for description in project["description"]:
-            wrapped_lines = wrap(description, width=int(max_text_width / 5))  # Ajustar el divisor aquí
+            wrapped_lines = wrap(description, width=int(max_text_width / 5))
             for wrapped_line in wrapped_lines:
-                pdf_canvas.drawString(left_margin + 10, y_position, f"{wrapped_line}")
+                pdf_canvas.drawString(left_margin + 10, y_position, wrapped_line)
                 y_position -= 14
                 y_position = check_page_space(y_position)
         y_position -= 5
 
-        # Tecnologías utilizadas con ajuste automático
+        # Tecnologías utilizadas
         pdf_canvas.setFont("Helvetica-Bold", 10)
         utilized_text = f"Tecnologías: {', '.join(project['technologies'])}"
-
-        wrapped_utilized = wrap(utilized_text, width=int(max_text_width / 5))  # Ajustar el divisor aquí
+        wrapped_utilized = wrap(utilized_text, width=int(max_text_width / 5))
         for line in wrapped_utilized:
             pdf_canvas.drawString(left_margin + 10, y_position, line)
             y_position -= 12
             y_position = check_page_space(y_position)
-
         y_position -= 15
 
     # Sección de Habilidades
@@ -114,10 +123,10 @@ def create_pdf_with_text(output_pdf_path, data):
     pdf_canvas.line(left_margin, y_position - 5, width - right_margin, y_position - 5)
     y_position -= 20
 
-    # Ajustar las habilidades para que se dividan en líneas si es necesario
+    # Ajustar las habilidades si se dividen en líneas
     pdf_canvas.setFont("Helvetica", 11)
     skills_text = ", ".join(data.get("skills", []))
-    wrapped_skills = wrap(skills_text, width=int(max_text_width / 5))  # Ajustar el divisor aquí
+    wrapped_skills = wrap(skills_text, width=int(max_text_width / 5))
     for line in wrapped_skills:
         pdf_canvas.drawString(left_margin, y_position, line)
         y_position -= 14
@@ -128,5 +137,4 @@ def create_pdf_with_text(output_pdf_path, data):
 
 # Ejemplo de uso con JSON
 output_pdf_path = "output_final_adjusted_projects_skills.pdf"
-
 create_pdf_with_text(output_pdf_path, data)
